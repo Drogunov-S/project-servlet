@@ -37,11 +37,16 @@ public class LogicServlet extends HttpServlet {
         }
         //Пустая ячейка
         int emptyFieldIndex = field.getEmptyFieldIndex();
-        if (emptyFieldIndex > 0) {
+        if (emptyFieldIndex >= 0) {
             field.getField().put(emptyFieldIndex, Sign.NOUGHT);
             if (checkWin(resp, currentSession, field)) {
                 return;
             }
+        } else {
+            currentSession.setAttribute("draw", true);
+            currentSession.setAttribute("data", field.getFieldData());
+            resp.sendRedirect("/index.jsp");
+            return;
         }
         // Значения полей для фронта
         List<Sign> data = field.getFieldData();

@@ -2,9 +2,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: 100vh ;
 }
 
 td {
+  font-family: monospace;
   border: 3px solid #304130;
   padding: 10px;
   border-collapse: separate;

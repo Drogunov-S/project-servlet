@@ -34,15 +34,31 @@
 <c:set var="NOUGHT" value="<%=Sign.NOUGHT%>"/>
 <c:if test="${winner == CROSSES}">
     <h1>CROSSES WIN</h1>
+    <button type="button" onclick="restart()">RESTART</button>
 </c:if>
 <c:if test="${winner == NOUGHT}">
     <h1>NOUGHTS WIN</h1>
+    <button type="button" onclick="restart()">RESTART</button>
+</c:if>
+<c:if test="${sessionScope.get('draw') == true}">
+    <h1>DRAW</h1>
+    <button type="button" onclick="restart()">RESTART</button>
 </c:if>
 
-<button type="button" onclick="window.location='/start'">NEW GAME</button>
+<%--<button type="button" onclick="window.location='/start'">NEW GAME</button>--%>
+
 
 <script>
-
+  function restart() {
+    $.ajax({
+      url: '/restart',
+      contentType: 'application/json;charset=UTF-8',
+      async: false,
+      success: function () {
+        location.reload();
+      }
+    });
+  }
 </script>
 
 </body>
